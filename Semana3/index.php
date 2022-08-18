@@ -32,7 +32,13 @@ try {
 
 $nome = $_POST['nome'];
 $descricao = $_POST['descricao'];
-$hora = date("Y-m-d H:i:s");
+
+try {
+    $sql = "INSERT INTO posts (nome,descricao) VALUES ('$nome','$descricao')";
+    $conn->exec($sql);
+} catch (PDOException $exception) {
+    echo $sql . "<br>" . $exception->getMessage();
+}
 
 ?>
 </body>
